@@ -14,9 +14,9 @@ namespace MinimalAPIWithEFCore.Models
     public PizzaDb(DbContextOptions options) : base(options) { }
     public DbSet<Pizza> Pizzas { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-      optionsBuilder.UseInMemoryDatabase("Pizzas");
-    }
+    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    // {
+    //   optionsBuilder.UseInMemoryDatabase("Pizzas");
+    // }
   }
 }

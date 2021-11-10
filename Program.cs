@@ -5,8 +5,18 @@ using MinimalAPIWithEFCore.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var connectionString = builder.Configuration.GetConnectionString("Pizzas") ?? "Data Source=Pizzas.db";
+
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddDbContext<PizzaDb>(options => options.UseInMemoryDatabase("items"));
+// builder.Services.AddDbContext<PizzaDb>(options => options.UseInMemoryDatabase("items"));
+builder.Services.AddSqlite<PizzaDb>(connectionString);
+
+// running the migration after adding sqlite
+// dotnet ef migrations add InitialCreate
+
+// CertificateForwardingBuilderExtensions the database and schema - generates the Pizzas.db file
+// dotnet ef database update
+
 builder.Services.AddSwaggerGen(c =>
   {
     c.SwaggerDoc("v1", new OpenApiInfo {
